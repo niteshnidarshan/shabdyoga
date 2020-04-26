@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<context:component-scan base-package="shabd.yoga.web.spring.controller"/>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<!-- Scans within the base package of the application for @Components to configure as beans -->
+	<context:component-scan base-package="org.springsource.mvc" />
+	
+	<bean id="recaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+		<property name="privateKey" value="6Lf-evsSAAAAAKy0l7NEnfHK6KunlhunuYq5PuQB"></property>
+	</bean>
+	
+	<bean id="jmsi" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="username" value="shabdyogamail@gmail.com"/>
+		<property name="password" value="031391743"/>
+		<property name="javaMailProperties">
+		<props>
+			<prop key="mail.transport.protocol">smtp</prop>
+			<prop key="mail.smtp.auth">true</prop>
+			<prop key="mail.smtp.port">465</prop>
+			<prop key="mail.smtp.socketFactory.port">465</prop>
+			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+		</props>
+		</property>
+	</bean>
+	<bean id="sendMeMail" class="shabd.yoga.mail.SendMeMail">
+		<property name="mailSender" ref="jmsi"/>
+	</bean>
+	<context:annotation-config/>
+</beans>
