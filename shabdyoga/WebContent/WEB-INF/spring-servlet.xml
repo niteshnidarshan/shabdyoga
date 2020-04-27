@@ -20,7 +20,7 @@
 	<bean id="jmsi" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
 		<property name="username" value="shabdyogamail@gmail.com"/>
-		<property name="password" value="031391743"/>
+		<property name="password" value="*********"/>
 		<property name="javaMailProperties">
 		<props>
 			<prop key="mail.transport.protocol">smtp</prop>
